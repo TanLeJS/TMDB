@@ -2,45 +2,72 @@ import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Movie {
-  @PrimaryColumn()
-  id: number; // TMDb movie ID will be used as the primary key
+  @PrimaryColumn() // TMDb ID as the primary key
+  id: number;
 
   @Column({ default: false })
-  adult: boolean; // From "adult" field
+  adult: boolean;
 
   @Column()
-  title: string; // From "title" field
-
-  @Column({ nullable: true })
-  backdropPath: string; // From "backdrop_path"
-
-  @Column('simple-array')
-  genreIds: number[]; // From "genre_ids" as an array
+  backdropPath: string;
 
   @Column()
-  originalLanguage: string; // From "original_language"
-
-  @Column()
-  originalTitle: string; // From "original_title"
+  title: string;
 
   @Column('text')
-  overview: string; // From "overview" field
-
-  @Column({ type: 'decimal', precision: 10, scale: 3 })
-  popularity: number; // From "popularity" field
+  overview: string;
 
   @Column()
-  posterPath: string; // From "poster_path"
+  originalLanguage: string;
 
   @Column()
-  releaseDate: string; // From "release_date"
-
-  @Column({ default: false })
-  video: boolean; // From "video" field
-
-  @Column({ type: 'decimal', precision: 3, scale: 1 })
-  voteAverage: number; // From "vote_average" field
+  originalTitle: string;
 
   @Column()
-  voteCount: number; // From "vote_count" field
+  posterPath: string;
+
+  @Column()
+  releaseDate: string;
+
+  @Column('float')
+  popularity: number;
+
+  @Column('float')
+  voteAverage: number;
+
+  @Column()
+  voteCount: number;
+
+  @Column('json', { nullable: true })
+  genres: { id: number; name: string }[];
+
+  @Column('json', { nullable: true })
+  belongsToCollection: { id: number; name: string; backdropPath: string };
+
+  @Column()
+  budget: number;
+
+  @Column()
+  revenue: number;
+
+  @Column()
+  runtime: number;
+
+  @Column({ nullable: true })
+  imdbId: string;
+
+  @Column('text', { nullable: true })
+  homepage: string;
+
+  @Column('json', { nullable: true })
+  productionCompanies: { id: number; name: string; logoPath: string }[];
+
+  @Column('json', { nullable: true })
+  productionCountries: { iso_3166_1: string; name: string }[];
+
+  @Column('json', { nullable: true })
+  spokenLanguages: { iso_639_1: string; name: string }[];
+
+  @Column({ nullable: true })
+  tagline: string;
 }

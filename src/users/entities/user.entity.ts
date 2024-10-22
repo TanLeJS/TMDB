@@ -1,11 +1,5 @@
 import { Genre } from 'src/genres/entities/genre.entity';
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -21,13 +15,6 @@ export class User {
   @Column()
   password: string;
 
-  @ManyToMany(() => Genre)
-  @JoinTable()
-  genres: Genre[];
-
   @Column()
-  preferredLanguage: string;
-
-  @Column()
-  preferredFormat: string;
+  preferenceGenres: Genre[];
 }
