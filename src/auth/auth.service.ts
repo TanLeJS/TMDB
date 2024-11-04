@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { RegisterUserDto } from 'src/users/dto/register-user.dto';
+import {
+  RegisterGoogleUserDto,
+  RegisterUserDto,
+} from 'src/users/dto/register-user.dto';
 
 import { IUser } from 'src/users/user.interace';
 import { UsersService } from 'src/users/users.service';
@@ -47,7 +50,7 @@ export class AuthService {
   async register(user: RegisterUserDto) {
     const newUser = await this.usersService.register(user);
     return {
-      _id: newUser?._id,
+      id: newUser?.id,
       createdAt: newUser?.createdAt,
     };
   }
@@ -55,7 +58,7 @@ export class AuthService {
   async registerWithGoogle(user: RegisterGoogleUserDto) {
     const newGoogleUser = await this.usersService.registerWithGoogle(user);
     return {
-      _id: newGoogleUser?._id,
+      id: newGoogleUser?.id,
       createdAt: newGoogleUser?.createdAt,
     };
   }

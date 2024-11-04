@@ -2,7 +2,7 @@ import { Genre } from 'src/genres/entities/genre.entity';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class UserEntity {
+export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -20,4 +20,7 @@ export class UserEntity {
 
   @Column()
   preferenceGenres: Genre[];
+
+  @Column()
+  createdAt: Date;
 }

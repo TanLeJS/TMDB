@@ -1,7 +1,5 @@
-import { Genre } from 'src/genres/entities/genre.entity';
-
 export interface IUser {
+  id: number;
   name: string;
   email: string;
-  preferenceGenres: Genre[];
 }

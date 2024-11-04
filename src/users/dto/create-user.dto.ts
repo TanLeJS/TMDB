@@ -24,7 +24,7 @@ export class CreateUserDto {
 
   @IsArray({ message: 'Genre should be an array' })
   @ArrayNotEmpty({ message: 'Genres array should not be empty' })
-  @IsString({ each: true, message: 'Each actor should be a non-empty string' })
+  @IsString({ each: true, message: 'Each genre should be a non-empty string' })
   @ArrayMinSize(1, { message: 'There should be at least one genre' })
   preferenceGenres: Genre[];
 }

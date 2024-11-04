@@ -1,15 +1,31 @@
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import {
+  ArrayMinSize,
+  ArrayNotEmpty,
+  IsArray,
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+} from 'class-validator';
+import { Genre } from 'src/genres/entities/genre.entity';
 
 export class RegisterUserDto {
-  @IsNotEmpty({ message: 'Please fill up your name' })
+  @IsNotEmpty()
+  @IsString()
   name: string;
 
-  @IsEmail({}, { message: 'Please type an correct email' })
-  @IsNotEmpty({ message: 'Please fill up your email' })
+  @IsNotEmpty()
+  @IsEmail()
   email: string;
 
-  @IsNotEmpty({ message: 'Please fill up your password ' })
+  @IsNotEmpty()
+  @IsString()
   password: string;
+
+  @IsArray({ message: 'Genre should be an array' })
+  @ArrayNotEmpty({ message: 'Genres array should not be empty' })
+  @IsString({ each: true, message: 'Each genre should be a non-empty string' })
+  @ArrayMinSize(1, { message: 'There should be at least one genre' })
+  preferenceGenres: Genre[];
 }
 
 export class RegisterGoogleUserDto {
