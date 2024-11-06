@@ -43,6 +43,8 @@ export class UsersService {
       preferenceGenres,
       type: 'SYSTEM',
       createdAt: new Date(),
+      updatedAt: new Date(),
+      deletedAt: new Date(),
     });
 
     return newRegister;
