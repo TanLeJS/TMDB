@@ -4,6 +4,8 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -25,7 +27,8 @@ export class User {
   @Column()
   type: string;
 
-  @Column()
+  @ManyToMany(() => Genre)
+  @JoinTable() // This creates a join table to handle the many-to-many relationship
   preferenceGenres: Genre[];
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
