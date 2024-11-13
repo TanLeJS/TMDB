@@ -1,13 +1,6 @@
 import { Movie } from 'src/movies/entities/movie.entity';
 import { User } from 'src/users/entities/user.entity';
-import {
-  Column,
-  DeleteDateColumn,
-  Entity,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class UserWatchlist {
@@ -24,11 +17,14 @@ export class UserWatchlist {
   watched: boolean;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  addedAt: Date;
+  createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'timestamp', onUpdate: 'CURRENT_TIMESTAMP', nullable: true })
   updatedAt: Date;
 
-  @DeleteDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
   deletedAt: Date;
 }

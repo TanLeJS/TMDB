@@ -28,15 +28,15 @@ export class User {
   type: string;
 
   @ManyToMany(() => Genre)
-  @JoinTable() // This creates a join table to handle the many-to-many relationship
+  @JoinTable()
   preferenceGenres: Genre[];
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn()
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @UpdateDateColumn()
   updatedAt: Date;
 
-  @DeleteDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @DeleteDateColumn()
   deletedAt: Date;
 }

@@ -78,12 +78,12 @@ export class Movie {
   @Column({ nullable: true })
   tagline: string;
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  addedAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @UpdateDateColumn()
   updatedAt: Date;
 
-  @DeleteDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @DeleteDateColumn()
   deletedAt: Date;
 }

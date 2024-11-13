@@ -1,3 +1,4 @@
+import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -21,6 +22,7 @@ import { UsersModule } from './users/users.module';
       isGlobal: true,
       envFilePath: '.env.development',
     }),
+    CacheModule.register(),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -28,8 +30,8 @@ import { UsersModule } from './users/users.module';
       username: process.env.MYSQL_USERNAME,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
-      entities: [Movie, User, Genre, UserRating, UserFavorite],
-      synchronize: true, // set to false in production
+      entities: [Movie, Genre, User, UserRating, UserFavorite],
+      synchronize: true,
     }),
     UsersModule,
     GenresModule,

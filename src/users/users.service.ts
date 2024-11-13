@@ -69,6 +69,7 @@ export class UsersService {
         email,
         type,
         password: hashPassword,
+        createdAt: new Date(),
       });
       return newGoogleRegister;
     }

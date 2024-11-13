@@ -20,12 +20,12 @@ export class UserFavorite {
   @ManyToOne(() => Movie, (movie) => movie.id, { onDelete: 'CASCADE' })
   movie: Movie;
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  addedAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @UpdateDateColumn()
   updatedAt: Date;
 
-  @DeleteDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @DeleteDateColumn()
   deletedAt: Date;
 }
