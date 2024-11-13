@@ -9,7 +9,7 @@ import {
 
 @Entity()
 export class Movie {
-  @PrimaryColumn() // TMDb ID as the primary key
+  @PrimaryColumn()
   id: number;
 
   @Column({ default: false })
@@ -78,12 +78,12 @@ export class Movie {
   @Column({ nullable: true })
   tagline: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: Date;
 }

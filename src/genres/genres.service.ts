@@ -35,14 +35,15 @@ export class GenresService {
         const response = await lastValueFrom(
           this.httpService.get(this.apiURL, { headers: this.headersRequest }),
         );
-        console.log(response);
         const allGenres = response.data.genres;
-        const genresToInsert = allGenres.map((genre) => ({
-          id: genre.id,
-          name: genre.name,
-        }));
 
-        await this.genreRepository.insert(genresToInsert);
+        const genresToInsert = allGenres
+          .filter((genre) => genre.id && genre.name) // Ensure id and name are present
+          .map((genre) => ({
+            id: genre.id,
+            genre: genre.name, // Set a fallback value for name
+          }));
+        return await this.genreRepository.insert(genresToInsert);
       } catch (error) {
         console.error('Error fetching genres:', error);
       }
